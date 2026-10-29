@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tải Rạp Nhà</title>
+<noscript><meta http-equiv="refresh" content="0; url=https://github.com/SmallAll/rap-nha-tv-releases/releases/latest"></noscript>
+<style>body{background:#0E0E10;color:#F4F1EA;font:18px/1.6 system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0;text-align:center;padding:24px}a{color:#F2B544}</style>
+</head>
+<body>
+<p>Đang tải Rạp Nhà…<br><small>Nếu không tự tải, <a id="f" href="https://github.com/SmallAll/rap-nha-tv-releases/releases/latest">bấm vào đây</a>.</small></p>
+<script>
+// Short link for TV installs (Downloader app): jump straight to the newest APK.
+fetch("https://api.github.com/repos/SmallAll/rap-nha-tv-releases/releases/latest")
+  .then(function(r){ return r.json(); })
+  .then(function(rel){
+    var apk = rel.assets.filter(function(a){ return /\.apk$/i.test(a.name); })[0];
+    var url = apk ? apk.browser_download_url : rel.html_url;
+    document.getElementById("f").href = url;
+    location.replace(url);
+  })
+  .catch(function(){ location.replace(document.getElementById("f").href); });
+</script>
+</body>
+</html>
